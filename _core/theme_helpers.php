@@ -37,23 +37,34 @@ function km_brand_short()
     return km_site_config_value('brand_short', 'TS');
 }
 
+function km_asset_url($path)
+{
+    $path = ltrim((string) $path, '/');
+    $url = km_asset_prefix() . $path;
+    $full = dirname(__DIR__) . '/' . $path;
+    if (is_file($full)) {
+        $url .= '?v=' . filemtime($full);
+    }
+    return $url;
+}
+
 function km_logo_url($dark = false)
 {
     $key = $dark ? 'logo_dark' : 'logo';
     $path = km_site_config_value($key, 'assets/media/app/default-logo.svg');
-    return km_asset_prefix() . ltrim($path, '/');
+    return km_asset_url($path);
 }
 
 function km_mini_logo_url()
 {
     $path = km_site_config_value('mini_logo', 'assets/media/app/mini-logo.svg');
-    return km_asset_prefix() . ltrim($path, '/');
+    return km_asset_url($path);
 }
 
 function km_favicon_url()
 {
     $path = km_site_config_value('favicon', 'assets/media/app/favicon.svg');
-    return km_asset_prefix() . ltrim($path, '/');
+    return km_asset_url($path);
 }
 
 function km_mysql_port()

@@ -83,7 +83,7 @@ ob_start();
 <form id="login_form" action="<?php echo htmlspecialchars($loginUrl, ENT_QUOTES, 'UTF-8'); ?>" class="kt-card-content flex flex-col gap-5 p-10" method="post" novalidate>
     <div class="flex justify-center mb-2">
         <a href="<?php echo htmlspecialchars($loginUrl, ENT_QUOTES, 'UTF-8'); ?>">
-            <img class="h-[36px] max-w-none" src="<?php echo htmlspecialchars(km_logo_url(false), ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars(km_company_name(), ENT_QUOTES, 'UTF-8'); ?>"/>
+            <img class="h-[44px] max-w-none" src="<?php echo htmlspecialchars(km_logo_url(false), ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars(km_company_name(), ENT_QUOTES, 'UTF-8'); ?>"/>
         </a>
     </div>
     <div class="text-center mb-1.5">
