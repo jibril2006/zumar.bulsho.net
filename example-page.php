@@ -29,23 +29,21 @@ include_once 'sidebar.php';
                         <div class="actions">
                             <a class="btn green btn-sm" href="dashboard.php">
                                 <i class="fa fa-arrow-left"></i>
-                                <?php echo km_current_language() === 'en' ? 'Back' : 'Dib ugu noqo'; ?>
+                                <?php echo htmlspecialchars(km_t('back'), ENT_QUOTES, 'UTF-8'); ?>
                             </a>
                         </div>
                     </div>
                     <div class="portlet-body">
                         <p class="km-list-filter-note">
-                            <?php echo km_current_language() === 'en'
-                                ? 'This page shows the standard list layout. Copy this file and wire up _data/ + datatables/ for Ajax tables.'
-                                : 'Boggan wuxuu muujinayaa qaabka liiska caadiga ah. Nuqul ka samee oo ku xir _data/ iyo datatables/.'; ?>
+                            <?php echo htmlspecialchars(km_t('example_note'), ENT_QUOTES, 'UTF-8'); ?>
                         </p>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th><?php echo km_current_language() === 'en' ? 'Name' : 'Magac'; ?></th>
-                                        <th><?php echo km_current_language() === 'en' ? 'Status' : 'Xaalad'; ?></th>
+                                        <th><?php echo htmlspecialchars(km_t('name'), ENT_QUOTES, 'UTF-8'); ?></th>
+                                        <th><?php echo htmlspecialchars(km_t('status'), ENT_QUOTES, 'UTF-8'); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>

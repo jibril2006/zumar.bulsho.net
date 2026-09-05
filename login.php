@@ -1,6 +1,7 @@
 <?php
 require_once '_core/init.php';
 require_once '_core/theme_helpers.php';
+km_init_language();
 
 $showError = true;
 $showError = 0;
@@ -64,11 +65,11 @@ if(Input::exists() && $dbConnected) {
                 Redirect::to('index.php');
             } else {
                 $showError = true;
-                $errorMessage = 'Login failed, username / password is incorrect!';
+                $errorMessage = km_t('login_failed');
             }
         } else {
             $showError = true;
-            $errorMessage = 'Type username and password!';
+            $errorMessage = km_t('type_user_pass');
             foreach($validation->errors() as $error) {
                 $errorMessage .= $error . '<br>';
             }
@@ -81,6 +82,7 @@ $generatedToken = Token::generate();
 ob_start();
 ?>
 <form id="login_form" action="<?php echo htmlspecialchars($loginUrl, ENT_QUOTES, 'UTF-8'); ?>" class="kt-card-content flex flex-col gap-5 p-10" method="post" novalidate>
+    <?php echo km_lang_switcher_html('login'); ?>
     <div class="flex justify-center mb-2">
         <a href="<?php echo htmlspecialchars($loginUrl, ENT_QUOTES, 'UTF-8'); ?>">
             <img class="h-[44px] max-w-none" src="<?php echo htmlspecialchars(km_logo_url(false), ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars(km_company_name(), ENT_QUOTES, 'UTF-8'); ?>"/>
@@ -88,45 +90,45 @@ ob_start();
     </div>
     <div class="text-center mb-1.5">
         <h1 class="text-xl font-semibold text-mono leading-tight mb-1"><?php echo htmlspecialchars(km_company_name(), ENT_QUOTES, 'UTF-8'); ?></h1>
-        <p class="text-sm text-secondary-foreground m-0">Sign In</p>
+        <p class="text-sm text-secondary-foreground m-0"><?php echo htmlspecialchars(km_t('sign_in'), ENT_QUOTES, 'UTF-8'); ?></p>
     </div>
     <?php if ($showError && $errorMessage !== ''): ?>
         <div class="kt-alert kt-alert-danger"><?php echo $errorMessage; ?></div>
     <?php endif; ?>
     <div class="flex flex-col gap-1">
-        <label class="kt-form-label font-normal text-mono">Username or Email</label>
-        <input class="kt-input" name="username" placeholder="Enter your username" type="text" required autofocus value="<?php echo htmlspecialchars(Input::get('username'), ENT_QUOTES, 'UTF-8'); ?>"/>
+        <label class="kt-form-label font-normal text-mono"><?php echo htmlspecialchars(km_t('username_or_email'), ENT_QUOTES, 'UTF-8'); ?></label>
+        <input class="kt-input" name="username" placeholder="<?php echo htmlspecialchars(km_t('enter_username'), ENT_QUOTES, 'UTF-8'); ?>" type="text" required autofocus value="<?php echo htmlspecialchars(Input::get('username'), ENT_QUOTES, 'UTF-8'); ?>"/>
     </div>
     <div class="flex flex-col gap-1">
         <div class="flex items-center justify-between gap-1">
-            <label class="kt-form-label font-normal text-mono mb-0">Password</label>
-            <a class="text-sm kt-link shrink-0" href="javascript:;" id="forget-password">Forgot Password?</a>
+            <label class="kt-form-label font-normal text-mono mb-0"><?php echo htmlspecialchars(km_t('password'), ENT_QUOTES, 'UTF-8'); ?></label>
+            <a class="text-sm kt-link shrink-0" href="javascript:;" id="forget-password"><?php echo htmlspecialchars(km_t('forgot_password'), ENT_QUOTES, 'UTF-8'); ?></a>
         </div>
-        <input class="kt-input" name="password" placeholder="Enter your password" type="password" required autocomplete="off"/>
+        <input class="kt-input" name="password" placeholder="<?php echo htmlspecialchars(km_t('enter_password'), ENT_QUOTES, 'UTF-8'); ?>" type="password" required autocomplete="off"/>
     </div>
     <label class="kt-label">
         <input type="hidden" name="formhash" value="<?php echo htmlspecialchars($formhash, ENT_QUOTES, 'UTF-8'); ?>">
         <input class="kt-checkbox kt-checkbox-sm" name="remember" type="checkbox" value="1"/>
-        <span class="kt-checkbox-label">Remember me</span>
+        <span class="kt-checkbox-label"><?php echo htmlspecialchars(km_t('remember_me'), ENT_QUOTES, 'UTF-8'); ?></span>
     </label>
     <button class="kt-btn kt-btn-primary flex justify-center grow inline-flex items-center gap-1" type="submit">
-        <i class="ki-filled ki-profile-circle text-sm"></i> Sign In
+        <i class="ki-filled ki-profile-circle text-sm"></i> <?php echo htmlspecialchars(km_t('sign_in'), ENT_QUOTES, 'UTF-8'); ?>
     </button>
     <?php echo km_login_attribution_footer_html($dbConnected); ?>
 </form>
 
 <form class="forget-form kt-card-content flex flex-col gap-5 p-10" action="validateforgetlogin.php" method="post" style="display:none;">
     <div class="text-center mb-1.5">
-        <h3 class="text-lg font-medium text-mono leading-none mb-2.5">Forgot Password?</h3>
-        <p class="text-sm text-secondary-foreground">Enter your e-mail address below to reset your password.</p>
+        <h3 class="text-lg font-medium text-mono leading-none mb-2.5"><?php echo htmlspecialchars(km_t('forgot_password'), ENT_QUOTES, 'UTF-8'); ?></h3>
+        <p class="text-sm text-secondary-foreground"><?php echo htmlspecialchars(km_t('forgot_intro'), ENT_QUOTES, 'UTF-8'); ?></p>
     </div>
     <div class="flex flex-col gap-1">
-        <label class="kt-form-label font-normal text-mono">Email</label>
-        <input class="kt-input" type="text" autocomplete="off" placeholder="Email" name="email"/>
+        <label class="kt-form-label font-normal text-mono"><?php echo htmlspecialchars(km_t('email'), ENT_QUOTES, 'UTF-8'); ?></label>
+        <input class="kt-input" type="text" autocomplete="off" placeholder="<?php echo htmlspecialchars(km_t('email'), ENT_QUOTES, 'UTF-8'); ?>" name="email"/>
     </div>
     <div class="flex items-center justify-between gap-2">
-        <button type="button" id="back-btn" class="kt-btn kt-btn-outline">Back</button>
-        <button type="submit" class="kt-btn kt-btn-primary">Submit</button>
+        <button type="button" id="back-btn" class="kt-btn kt-btn-outline"><?php echo htmlspecialchars(km_t('back'), ENT_QUOTES, 'UTF-8'); ?></button>
+        <button type="submit" class="kt-btn kt-btn-primary"><?php echo htmlspecialchars(km_t('submit'), ENT_QUOTES, 'UTF-8'); ?></button>
     </div>
 </form>
 
@@ -183,5 +185,5 @@ require_once __DIR__ . '/metronic_auth_template.php';
 render_metronic_auth_page(
     $mainContent,
     __DIR__ . '/html/demo1/authentication/classic/sign-in.html',
-    km_company_name() . ' | Sign In'
+    km_company_name() . ' | ' . km_t('sign_in')
 );

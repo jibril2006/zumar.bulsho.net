@@ -8,7 +8,7 @@ if (!$user->isLoggedIn()) {
     Redirect::to('login.php');
 }
 
-$pagename = km_current_language() === 'en' ? 'Standard reports' : 'Warbixinno';
+$pagename = km_t('reports');
 include_once 'head.php';
 
 $q = function ($sql) {
@@ -104,16 +104,16 @@ $policyRate = $q("
             <div class="portlet-body">
                 <?php
                 $sections = array(
-                    array(zumar_lang_text('Ka-faa\'iidaystayaasha qayb / waddan / sanad', 'Beneficiaries by sector, country and year'), array('Country', 'Sector', 'Year', 'Reached'), $beneficiaries, array('country_code', 'sector_code', 'year', 'reached')),
-                    array(zumar_lang_text('Kharashka mashruuc kasta', 'Cost by project'), array('Project', 'Name', 'Sector', 'Cost'), $costPer, array('project_code', 'project_name', 'sector_code', 'total_cost')),
-                    array(zumar_lang_text('Xaaladda agoonta', 'Orphan status'), array('Status', 'Count'), $orphanStatus, array('status', 'c')),
-                    array(zumar_lang_text('Xaaladda goobaha biyaha', 'Water point status'), array('Country', 'Status', 'Count'), $waterStatus, array('country_code', 'status', 'c')),
-                    array(zumar_lang_text('Gaaritaanka caafimaadka', 'Health service reach'), array('Type', 'Count'), $healthReach, array('kind', 'c')),
-                    array(zumar_lang_text('Kiisaska dhexdhexaadinta', 'Mediation caseload'), array('Status', 'Count'), $peace, array('case_status', 'c')),
-                    array(zumar_lang_text('Qoondeynta shaqaalaha', 'Staff allocation by project'), array('Project', 'Staff', 'Role', '%'), $staffDays, array('project_code', 'full_name', 'role_on_project', 'allocation_percentage')),
-                    array(zumar_lang_text('Iibsiga ee sugaya', 'Procurement pipeline'), array('Kind', 'Count'), $procurement, array('kind', 'c')),
-                    array(zumar_lang_text('Maalgelinta deeq-bixiyayaasha', 'Donor funding committed vs received'), array('Partner', 'Committed', 'Received'), $funding, array('partner_name', 'committed', 'received')),
-                    array(zumar_lang_text('Oggolaanshaha siyaasadaha', 'Policy acknowledgement by staff'), array('Country', 'Staff', 'Acks'), $policyRate, array('country_code', 'full_name', 'acks')),
+                    array(km_t('rep_beneficiaries'), array(km_t('col_country'), km_t('col_sector'), km_t('col_year'), km_t('col_reached')), $beneficiaries, array('country_code', 'sector_code', 'year', 'reached')),
+                    array(km_t('rep_cost'), array(km_t('col_project'), km_t('name'), km_t('col_sector'), km_t('col_cost')), $costPer, array('project_code', 'project_name', 'sector_code', 'total_cost')),
+                    array(km_t('rep_orphan'), array(km_t('status'), km_t('col_count')), $orphanStatus, array('status', 'c')),
+                    array(km_t('rep_water'), array(km_t('col_country'), km_t('status'), km_t('col_count')), $waterStatus, array('country_code', 'status', 'c')),
+                    array(km_t('rep_health'), array(km_t('col_type'), km_t('col_count')), $healthReach, array('kind', 'c')),
+                    array(km_t('rep_peace'), array(km_t('status'), km_t('col_count')), $peace, array('case_status', 'c')),
+                    array(km_t('rep_staff'), array(km_t('col_project'), km_t('col_staff'), km_t('col_role'), '%'), $staffDays, array('project_code', 'full_name', 'role_on_project', 'allocation_percentage')),
+                    array(km_t('rep_proc'), array(km_t('col_kind'), km_t('col_count')), $procurement, array('kind', 'c')),
+                    array(km_t('rep_funding'), array(km_t('col_partner'), km_t('col_committed'), km_t('col_received')), $funding, array('partner_name', 'committed', 'received')),
+                    array(km_t('rep_policy'), array(km_t('col_country'), km_t('col_staff'), km_t('col_acks')), $policyRate, array('country_code', 'full_name', 'acks')),
                 );
                 foreach ($sections as $section) {
                     echo '<h4>' . htmlspecialchars($section[0], ENT_QUOTES, 'UTF-8') . '</h4>';
@@ -128,7 +128,7 @@ $policyRate = $q("
                     foreach ($section[2] as $row) {
                         echo '<tr>';
                         foreach ($section[3] as $col) {
-                            echo '<td>' . htmlspecialchars((string) ($row->$col ?? ''), ENT_QUOTES, 'UTF-8') . '</td>';
+                            echo '<td>' . htmlspecialchars(km_option_label((string) ($row->$col ?? '')), ENT_QUOTES, 'UTF-8') . '</td>';
                         }
                         echo '</tr>';
                     }

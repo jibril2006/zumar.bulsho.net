@@ -255,5 +255,5 @@ function zumar_status_label($value)
     } elseif (in_array($value, $bad, true)) {
         $class = 'danger';
     }
-    return '<span class="label label-sm label-' . $class . '">' . htmlspecialchars($value, ENT_QUOTES, 'UTF-8') . '</span>';
+    return '<span class="label label-sm label-' . $class . '">' . htmlspecialchars(km_option_label($value), ENT_QUOTES, 'UTF-8') . '</span>';
 }

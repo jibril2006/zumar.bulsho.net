@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/i18n.php';
+
 function km_site_config()
 {
     static $config = null;
@@ -99,7 +101,7 @@ function km_check_db_connection()
 function km_login_db_status_html($connected)
 {
     $class = $connected ? 'login-db-dot login-db-dot--ok' : 'login-db-dot login-db-dot--err';
-    $title = $connected ? 'Database forbundet' : 'Database ikke forbundet';
+    $title = $connected ? km_t('db_ok') : km_t('db_err');
 
     return '<div class="flex items-center justify-center gap-2 pt-1">'
         . '<span class="' . $class . '" title="' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '"></span>'
@@ -109,11 +111,11 @@ function km_login_db_status_html($connected)
 function km_login_attribution_footer_html($connected)
 {
     $dotClass = $connected ? 'login-db-dot login-db-dot--ok' : 'login-db-dot login-db-dot--err';
-    $dotTitle = $connected ? 'Database forbundet' : 'Database ikke forbundet';
+    $dotTitle = $connected ? km_t('db_ok') : km_t('db_err');
 
     return '<div class="flex items-center justify-center gap-2 text-xs text-muted-foreground pt-2">'
         . '<span class="' . $dotClass . '" title="' . htmlspecialchars($dotTitle, ENT_QUOTES, 'UTF-8') . '"></span>'
-        . '<span>System made by Bulsho IT</span>'
+        . '<span>' . htmlspecialchars(km_t('system_by'), ENT_QUOTES, 'UTF-8') . '</span>'
         . '</div>';
 }
 
@@ -156,6 +158,8 @@ function km_init_language()
 
 function km_current_language()
 {
+    km_init_language();
+
     if (!Session::exists('km_lang')) {
         return 'so';
     }
@@ -286,6 +290,6 @@ function km_footer_copyright_year()
     return (string) km_site_config_value('footer_copyright_year', date('Y'));
 }
 
-if (class_exists('Session', false)) {
+if (class_exists('Session', true)) {
     km_init_language();
 }

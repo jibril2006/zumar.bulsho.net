@@ -17,6 +17,9 @@ require_once __DIR__ . '/_core/theme_helpers.php';
                     <div class="top-menu">
                         <ul class="nav navbar-nav pull-right">
                             <li class="separator hide"></li>
+                            <li class="km-lang-item">
+                                <?php echo km_lang_switcher_html('header'); ?>
+                            </li>
                             <li class="dropdown dropdown-user dropdown-dark">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <span class="username username-hide-on-mobile"><?php echo htmlspecialchars($USERNAME, ENT_QUOTES, 'UTF-8'); ?></span>

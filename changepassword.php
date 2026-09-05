@@ -6,7 +6,7 @@ if (!$user->isLoggedIn()) {
     Redirect::to('login.php');
 }
 
-$pagename = km_current_language() === 'en' ? 'Change password' : 'Badal password';
+$pagename = km_t('change_password');
 include_once 'head.php';
 ?>
 <!-- BEGIN PAGE LEVEL PLUGINS -->
@@ -52,7 +52,7 @@ $editname = trim((string) ($edituser->name ?? $edituser->username));
                                 <div class="portlet-title">
                                     <div class="caption font-red-sunglo">
                                         <i class="icon-user font-red-sunglo"></i>
-                                        <span class="caption-subject bold uppercase"> Change your password.</span>
+                                        <span class="caption-subject bold uppercase"> <?php echo htmlspecialchars(km_t('change_your_password'), ENT_QUOTES, 'UTF-8'); ?></span>
                                         <span class="caption-subject bold uppercase" style="color: #0000FF;"> </span>
                                     </div>
                                     
@@ -69,21 +69,21 @@ $editname = trim((string) ($edituser->name ?? $edituser->username));
                                                     <div class="form-body">
                                                        
                                                          <div class="form-group col-md-12">
-                                                            <label class="col-md-2 control-label">Previus Password:<span class="required">&#42;</span></label>
+                                                            <label class="col-md-2 control-label"><?php echo htmlspecialchars(km_t('previous_password'), ENT_QUOTES, 'UTF-8'); ?>:<span class="required">&#42;</span></label>
                                                             <div class="col-md-4">
-                                                                <input type="password" class="form-control red" placeholder="Previus Password" name="prepassword" value="<?php if(Input::get("prepassword")) echo Input::get("prepassword"); ?>" required="true">
+                                                                <input type="password" class="form-control red" placeholder="<?php echo htmlspecialchars(km_t('previous_password'), ENT_QUOTES, 'UTF-8'); ?>" name="prepassword" value="<?php if(Input::get("prepassword")) echo Input::get("prepassword"); ?>" required="true">
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-md-12">
-                                                            <label class="col-md-2 control-label">New password:<span class="required">&#42;</span></label>
+                                                            <label class="col-md-2 control-label"><?php echo htmlspecialchars(km_t('new_password'), ENT_QUOTES, 'UTF-8'); ?>:<span class="required">&#42;</span></label>
                                                             <div class="col-md-4">
-                                                                <input type="password" class="form-control red" placeholder="New Password" name="password" value="<?php if(Input::get("password")) echo Input::get("password"); ?>" required="true">
+                                                                <input type="password" class="form-control red" placeholder="<?php echo htmlspecialchars(km_t('new_password'), ENT_QUOTES, 'UTF-8'); ?>" name="password" value="<?php if(Input::get("password")) echo Input::get("password"); ?>" required="true">
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-md-12">
-                                                            <label class="col-md-2 control-label">New password again:<span class="required">&#42;</span></label>
+                                                            <label class="col-md-2 control-label"><?php echo htmlspecialchars(km_t('new_password_again'), ENT_QUOTES, 'UTF-8'); ?>:<span class="required">&#42;</span></label>
                                                             <div class="col-md-4">
-                                                                <input type="password" class="form-control red" placeholder="New Password again" name="passwordagain" value="<?php if(Input::get("passwordagain")) echo Input::get("passwordagain"); ?>" required="true">
+                                                                <input type="password" class="form-control red" placeholder="<?php echo htmlspecialchars(km_t('new_password_again'), ENT_QUOTES, 'UTF-8'); ?>" name="passwordagain" value="<?php if(Input::get("passwordagain")) echo Input::get("passwordagain"); ?>" required="true">
                                                             </div>
                                                         </div>
                                                       
@@ -91,15 +91,15 @@ $editname = trim((string) ($edituser->name ?? $edituser->username));
                                                         
                                                         <div class="form-group last">
                                                             <div class="col-md-4" style="text-align: right;">
-                                                                <span class="required"> &#42; Required fields and must be filled out.</span>
+                                                                <span class="required"> <?php echo htmlspecialchars(km_t('required_fields'), ENT_QUOTES, 'UTF-8'); ?></span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-actions">
                                                         <div class="row">
                                                             <div class="col-md-offset-8 col-md-4">
-                                                                <a class="btn red btn-outline sbold" data-toggle="modal" href="#basic"> Cancel </a>
-                                                                <input name="submit" type="submit" class="btn green" value=" Save ">
+                                                                <a class="btn red btn-outline sbold" data-toggle="modal" href="#basic"> <?php echo htmlspecialchars(km_t('cancel'), ENT_QUOTES, 'UTF-8'); ?> </a>
+                                                                <input name="submit" type="submit" class="btn green" value=" <?php echo htmlspecialchars(km_t('save'), ENT_QUOTES, 'UTF-8'); ?> ">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -127,12 +127,12 @@ include_once 'footer.php';
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                                    <h4 class="modal-title">Cancel</h4>
+                                                    <h4 class="modal-title"><?php echo htmlspecialchars(km_t('cancel_title'), ENT_QUOTES, 'UTF-8'); ?></h4>
                                                 </div>
-                                                <div class="modal-body"> Are you sure you want to cancel! </div>
+                                                <div class="modal-body"> <?php echo htmlspecialchars(km_t('cancel_confirm'), ENT_QUOTES, 'UTF-8'); ?> </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">No</button>
-                                                    <a href="dashboard.php" type="button" class="btn red">Yes</a>
+                                                    <button type="button" class="btn dark btn-outline" data-dismiss="modal"><?php echo htmlspecialchars(km_t('no'), ENT_QUOTES, 'UTF-8'); ?></button>
+                                                    <a href="dashboard.php" type="button" class="btn red"><?php echo htmlspecialchars(km_t('yes'), ENT_QUOTES, 'UTF-8'); ?></a>
                                                 </div>
                                             </div>
                                             <!-- /.modal-content -->

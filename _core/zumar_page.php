@@ -157,9 +157,12 @@ function zumar_display_cell($module, $fieldName, $row)
         return htmlspecialchars(km_format_money($value), ENT_QUOTES, 'UTF-8');
     }
     if ($field && $field['type'] === 'file' && $value) {
-        return '<a href="' . htmlspecialchars($value, ENT_QUOTES, 'UTF-8') . '" target="_blank">file</a>';
+        return '<a href="' . htmlspecialchars($value, ENT_QUOTES, 'UTF-8') . '" target="_blank">' . htmlspecialchars(km_t('file'), ENT_QUOTES, 'UTF-8') . '</a>';
     }
-    return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
+    if ($field && $field['type'] === 'select') {
+        return htmlspecialchars(km_option_label($value), ENT_QUOTES, 'UTF-8');
+    }
+    return htmlspecialchars(km_option_label((string) $value), ENT_QUOTES, 'UTF-8');
 }
 
 function zumar_render_input($field, $value)
@@ -175,7 +178,7 @@ function zumar_render_input($field, $value)
         echo '<select class="form-control" name="' . $name . '"' . $req . '><option value="">—</option>';
         foreach ($field['options'] as $optVal => $optLabel) {
             $sel = ((string) $value === (string) $optVal) ? ' selected' : '';
-            echo '<option value="' . htmlspecialchars((string) $optVal, ENT_QUOTES, 'UTF-8') . '"' . $sel . '>' . htmlspecialchars($optLabel, ENT_QUOTES, 'UTF-8') . '</option>';
+            echo '<option value="' . htmlspecialchars((string) $optVal, ENT_QUOTES, 'UTF-8') . '"' . $sel . '>' . htmlspecialchars(km_option_label($optLabel), ENT_QUOTES, 'UTF-8') . '</option>';
         }
         echo '</select>';
     } elseif ($field['type'] === 'fk') {
@@ -250,21 +253,21 @@ function zumar_render_page($key)
                         </div>
                         <div class="actions">
                             <?php if (in_array($action, array('add', 'edit'), true)) { ?>
-                                <a class="btn default btn-sm" href="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>.php"><i class="fa fa-list"></i> <?php echo zumar_lang_text('Liiska', 'List'); ?></a>
+                                <a class="btn default btn-sm" href="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>.php"><i class="fa fa-list"></i> <?php echo htmlspecialchars(km_t('list'), ENT_QUOTES, 'UTF-8'); ?></a>
                             <?php } else { ?>
-                                <a class="btn green btn-sm" href="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>.php?action=add"><i class="fa fa-plus"></i> <?php echo zumar_lang_text('Kudar', 'Add'); ?></a>
+                                <a class="btn green btn-sm" href="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>.php?action=add"><i class="fa fa-plus"></i> <?php echo htmlspecialchars(km_t('add'), ENT_QUOTES, 'UTF-8'); ?></a>
                             <?php } ?>
                         </div>
                     </div>
                     <div class="portlet-body">
                         <?php if (Input::get('saved')) { ?>
-                            <div class="alert alert-success"><?php echo zumar_lang_text('Waa la keydiyay.', 'Saved.'); ?></div>
+                            <div class="alert alert-success"><?php echo htmlspecialchars(km_t('saved'), ENT_QUOTES, 'UTF-8'); ?></div>
                         <?php } ?>
                         <?php if (Input::get('deleted')) { ?>
-                            <div class="alert alert-warning"><?php echo zumar_lang_text('Waa la tirtiray.', 'Deleted.'); ?></div>
+                            <div class="alert alert-warning"><?php echo htmlspecialchars(km_t('deleted'), ENT_QUOTES, 'UTF-8'); ?></div>
                         <?php } ?>
                         <?php if (!empty($module['restricted'])) { ?>
-                            <div class="alert alert-danger"><?php echo zumar_lang_text('Xog xasaasi ah — gelitaanka waa xaddidan.', 'Restricted safeguarding data.'); ?></div>
+                            <div class="alert alert-danger"><?php echo htmlspecialchars(km_t('restricted'), ENT_QUOTES, 'UTF-8'); ?></div>
                         <?php } ?>
 
                         <?php if (in_array($action, array('add', 'edit'), true)) { ?>
@@ -279,7 +282,7 @@ function zumar_render_page($key)
                                         echo '</div>';
                                     } ?>
                                 </div>
-                                <button type="submit" class="btn green"><?php echo zumar_lang_text('Keydi', 'Save'); ?></button>
+                                <button type="submit" class="btn green"><?php echo htmlspecialchars(km_t('save'), ENT_QUOTES, 'UTF-8'); ?></button>
                             </form>
                         <?php } else { ?>
                             <div class="table-responsive">
@@ -305,7 +308,7 @@ function zumar_render_page($key)
                                     </thead>
                                     <tbody>
                                         <?php if (!$rows) { ?>
-                                            <tr><td colspan="<?php echo count($module['list']) + 2; ?>"><?php echo zumar_lang_text('Wax diiwaan ah ma jiro.', 'No records yet.'); ?></td></tr>
+                                            <tr><td colspan="<?php echo count($module['list']) + 2; ?>"><?php echo htmlspecialchars(km_t('no_records'), ENT_QUOTES, 'UTF-8'); ?></td></tr>
                                         <?php } ?>
                                         <?php foreach ($rows as $item) { ?>
                                             <tr>
@@ -315,7 +318,7 @@ function zumar_render_page($key)
                                                 } ?>
                                                 <td class="text-right">
                                                     <a class="btn btn-xs blue" href="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>.php?action=edit&id=<?php echo (int) $item->id; ?>"><i class="fa fa-pencil"></i></a>
-                                                    <a class="btn btn-xs red" href="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>.php?action=delete&id=<?php echo (int) $item->id; ?>" onclick="return confirm('Delete?');"><i class="fa fa-trash"></i></a>
+                                                    <a class="btn btn-xs red" href="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>.php?action=delete&id=<?php echo (int) $item->id; ?>" onclick="return confirm('<?php echo htmlspecialchars(km_t('delete_confirm'), ENT_QUOTES, 'UTF-8'); ?>');"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

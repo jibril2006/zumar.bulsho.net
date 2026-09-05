@@ -12,11 +12,9 @@ $pagename = km_home_label();
 include_once 'head.php';
 
 $companyName = km_company_name();
-$welcomeLabel = km_current_language() === 'en' ? 'Welcome' : 'Ku soo dhawoow';
-$startLabel = km_current_language() === 'en' ? 'Getting started' : 'Bilowga';
-$startText = km_current_language() === 'en'
-    ? 'Every record is tagged to a Project, and therefore to a country and sector. Use the modules in the sidebar to record field activity across Somalia, Uganda and Kenya.'
-    : 'Diiwaan kasta wuxuu ku xiran yahay Mashruuc, sidaas darteed waddan iyo qayb. Adeegso menu-ga si aad u diiwaangeliso howlaha Somalia, Uganda iyo Kenya.';
+$welcomeLabel = km_t('welcome');
+$startLabel = km_t('getting_started');
+$startText = km_t('dash_intro');
 
 $dashStatCard = static function (
     ?string $href,
@@ -139,15 +137,15 @@ include_once 'sidebar.php';
                     'projects.php',
                     'dash-kpi-card--1',
                     (string) zumar_count('zf_projects'),
-                    km_current_language() === 'en' ? 'Projects' : 'Mashruucyada',
-                    km_current_language() === 'en' ? 'Hub for all modules' : 'Xudunta dhammaan qaybaha',
+                    km_t('kpi_projects'),
+                    km_t('kpi_projects_hint'),
                     'fa fa-folder-open'
                 );
                 $dashStatCard(
                     'orphans.php',
                     'dash-kpi-card--2',
                     (string) zumar_count('zf_orphans'),
-                    km_current_language() === 'en' ? 'Registered orphans' : 'Agoonta diiwaangashan',
+                    km_t('kpi_orphans'),
                     'ORPH-01',
                     'fa fa-child'
                 );
@@ -155,7 +153,7 @@ include_once 'sidebar.php';
                     'water-points.php',
                     'dash-kpi-card--3',
                     (string) zumar_count('zf_water_points'),
-                    km_current_language() === 'en' ? 'Water points' : 'Goobaha biyaha',
+                    km_t('kpi_water'),
                     'WASH-01',
                     'fa fa-tint'
                 );
@@ -163,24 +161,24 @@ include_once 'sidebar.php';
                     'staff.php',
                     'dash-kpi-card--1',
                     (string) zumar_count('zf_staff'),
-                    km_current_language() === 'en' ? 'Staff' : 'Shaqaalaha',
-                    km_current_language() === 'en' ? 'HR registry' : 'Diiwaanka shaqaalaha',
+                    km_t('kpi_staff'),
+                    km_t('kpi_staff_hint'),
                     'fa fa-users'
                 );
                 $dashStatCard(
                     'purchase-requests.php',
                     'dash-kpi-card--2',
                     (string) zumar_count('zf_purchase_requests'),
-                    km_current_language() === 'en' ? 'Purchase requests' : 'Codsiyada iibsiga',
-                    km_current_language() === 'en' ? 'Operations approval' : 'Ansixinta hawlgallada',
+                    km_t('kpi_pr'),
+                    km_t('kpi_pr_hint'),
                     'fa fa-file-o'
                 );
                 $dashStatCard(
                     'reports.php',
                     'dash-kpi-card--3',
                     '→',
-                    km_current_language() === 'en' ? 'Standard reports' : 'Warbixinno',
-                    km_current_language() === 'en' ? 'Cross-cutting queries' : 'Warbixinno isku-dhafan',
+                    km_t('kpi_reports'),
+                    km_t('kpi_reports_hint'),
                     'fa fa-pie-chart'
                 );
                 ?>
@@ -189,12 +187,8 @@ include_once 'sidebar.php';
             <div class="dash-panel-card">
                 <div class="dash-panel-body">
                     <h2><?php echo htmlspecialchars($startLabel, ENT_QUOTES, 'UTF-8'); ?></h2>
-                    <p><?php echo km_current_language() === 'en'
-                        ? 'Start with Master data (countries, locations, sectors, partners), then create a Project. Finance, HR, procurement and program forms all require a Project ID.'
-                        : 'Bilow Xogta aasaasiga (waddamada, goobaha, qaybaha, lammaanayaasha), kadibna samee Mashruuc. Maaliyadda, HR, iibsiga iyo foomamka barnaamijku waxay u baahan yihiin Project ID.'; ?></p>
-                    <p><?php echo km_current_language() === 'en'
-                        ? 'Codes are generated automatically: SO-WASH-014-2025 for projects, SO-ORPH-00231 for beneficiaries, ZF-UG-014 for staff.'
-                        : 'Koodhadhka waa toos: SO-WASH-014-2025 mashruucyada, SO-ORPH-00231 ka-faa\'iidaystayaasha, ZF-UG-014 shaqaalaha.'; ?></p>
+                    <p><?php echo htmlspecialchars(km_t('dash_start_1'), ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p><?php echo htmlspecialchars(km_t('dash_start_2'), ENT_QUOTES, 'UTF-8'); ?></p>
                 </div>
             </div>
         </div>

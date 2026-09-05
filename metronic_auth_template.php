@@ -71,6 +71,11 @@ function render_metronic_auth_page($mainContent, $templatePath, $pageTitle = nul
         . '.login-db-dot{display:inline-block;width:8px;height:8px;border-radius:50%;flex-shrink:0;vertical-align:middle}'
         . '.login-db-dot--ok{background:#22c55e;box-shadow:0 0 0 2px rgba(34,197,94,.3)}'
         . '.login-db-dot--err{background:#ef4444;box-shadow:0 0 0 2px rgba(239,68,68,.3)}'
+        . '.km-lang-switch{display:inline-flex;align-items:stretch;overflow:hidden;border-radius:999px;height:32px}'
+        . '.km-lang-switch a{display:inline-flex;align-items:center;justify-content:center;min-width:40px;padding:0 11px;font-size:12px;font-weight:800;letter-spacing:.04em;text-decoration:none;line-height:1}'
+        . '.km-lang-switch--login{border:1px solid #cbd5e1;background:#f8fafc;margin:0 auto .75rem}'
+        . '.km-lang-switch--login a{color:#334155}'
+        . '.km-lang-switch--login a.is-active{background:#0f766e;color:#fff}'
         . '</style>';
     $html = preg_replace('/<\/head>/i', $authStyles . '</head>', $html, 1);
 

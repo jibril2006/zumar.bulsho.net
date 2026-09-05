@@ -9,7 +9,7 @@ require_once __DIR__ . '/_core/theme_helpers.php';
                     <span class="km-footer-badge" aria-hidden="true"><?php echo htmlspecialchars(km_brand_short(), ENT_QUOTES, 'UTF-8'); ?></span>
                     <div class="km-footer-text">
                         <span class="km-footer-copy">
-                            <?php echo htmlspecialchars(km_footer_copyright_year(), ENT_QUOTES, 'UTF-8'); ?> &copy; BITS System by
+                            <?php echo htmlspecialchars(km_footer_copyright_year(), ENT_QUOTES, 'UTF-8'); ?> &copy; <?php echo htmlspecialchars(km_t('bits_by'), ENT_QUOTES, 'UTF-8'); ?>
                             <a target="_blank" rel="noopener noreferrer" href="http://bulsho.net">Bulsho IT Systems</a>
                         </span>
                         <span class="km-footer-divider" aria-hidden="true"></span>
