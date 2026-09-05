@@ -48,14 +48,18 @@ App: http://localhost:8000
 
 ## Docker
 
-Uses the same database as the PHP config: `zumardb` / `zumardbuser`. On first start MySQL imports `_core/sql/install.sql` and `_core/sql/zumar_schema.sql`.
+The app container has no MySQL of its own. It joins the shared Coolify network and uses the common database server (`zekubw4fjelwjqlrepe23ilj`), database `zumardb`, user `zumardbuser`.
+
+Import schema once on that server if the tables are not there yet:
+
+```bash
+mysql -h zekubw4fjelwjqlrepe23ilj -u zumardbuser -p zumardb < _core/sql/install.sql
+mysql -h zekubw4fjelwjqlrepe23ilj -u zumardbuser -p zumardb < _core/sql/zumar_schema.sql
+```
 
 ```bash
 cp .env.example .env
 docker compose up --build
 ```
-
-App: http://localhost:8080  
-MySQL on the host: `127.0.0.1:3307`
 
 Login: `admin` / `admin123`
