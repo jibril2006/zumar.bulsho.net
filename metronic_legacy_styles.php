@@ -62,7 +62,7 @@ function km_metronic_legacy_styles()
     padding: 3px 8px; border-radius: 3px; border: 1px solid transparent;
     font-weight: 600; font-size: 11px; line-height: 1.2; text-decoration: none;
 }
-.btn.btn-xs.green { background: #26a69a !important; border-color: #1f8f86 !important; color: #fff !important; }
+.btn.btn-xs.green { background: #0f766e !important; border-color: #115e59 !important; color: #fff !important; }
 .btn.btn-xs.grey { background: #e9ecef !important; border-color: #ced4da !important; color: #495057 !important; }
 .btn.btn-xs.red { background: #dc3545 !important; border-color: #c82333 !important; color: #fff !important; }
 .btn-sm { padding: 0.45rem 0.75rem; font-size: 0.9375rem; }
@@ -73,7 +73,7 @@ function km_metronic_legacy_styles()
     font-size: 1rem;
 }
 .form-control:focus, select.form-control:focus, textarea.form-control:focus {
-    outline: none; border-color: #26a69a; box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.15);
+    outline: none; border-color: #0f766e; box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
 }
 .form-group { margin-bottom: 1rem; }
 .form-group label, .control-label {
@@ -92,13 +92,13 @@ function km_metronic_legacy_styles()
 .km-list-page .km-table-shell { padding: 0; }
 
 .badge, .label { display: inline-flex; align-items: center; padding: 0.2rem 0.55rem; border-radius: 999px; font-size: 0.875rem; font-weight: 600; }
-.badge-success, .label-success { background: rgba(38, 166, 154, 0.15); color: #26a69a; }
+.badge-success, .label-success { background: rgba(15, 118, 110, 0.15); color: #0f766e; }
 .badge-danger, .label-danger { background: rgba(220, 53, 69, 0.15); color: #dc3545; }
-.badge-primary, .label-primary { background: rgba(38, 166, 154, 0.15); color: #26a69a; }
+.badge-primary, .label-primary { background: rgba(15, 118, 110, 0.15); color: #0f766e; }
 
 .alert { padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid #e2e8f0; margin-bottom: 1rem; }
 .alert-danger { background: rgba(220, 53, 69, 0.1); color: #dc3545; border-color: rgba(220, 53, 69, 0.35); }
-.alert-success { background: rgba(38, 166, 154, 0.1); color: #26a69a; border-color: rgba(38, 166, 154, 0.35); }
+.alert-success { background: rgba(15, 118, 110, 0.1); color: #0f766e; border-color: rgba(15, 118, 110, 0.35); }
 .alert-warning { background: rgba(245, 158, 11, 0.12); color: #b45309; border-color: rgba(245, 158, 11, 0.35); }
 
 .dashboard-stat2, .dashboard-stat2.bordered {

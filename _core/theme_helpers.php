@@ -123,15 +123,91 @@ function km_menu_icon_class($icon)
 {
     $icon = trim((string)$icon);
     if ($icon === '') {
-        return 'icon-home';
+        return 'icon-notebook';
     }
-    if (strpos($icon, 'icon-') === 0 || strpos($icon, 'fa ') === 0 || strpos($icon, 'fa-') === 0) {
+    if (strpos($icon, 'icon-') === 0) {
         return $icon;
+    }
+    if (strpos($icon, 'fas ') === 0 || strpos($icon, 'far ') === 0 || strpos($icon, 'fab ') === 0) {
+        return $icon;
+    }
+    if (strpos($icon, 'fa ') === 0) {
+        return 'fas ' . trim(substr($icon, 3));
+    }
+    if (strpos($icon, 'fa-') === 0) {
+        return 'fas ' . $icon;
     }
     if (strpos($icon, 'ki-') !== false) {
         return 'menu-bullet ki-outline ' . $icon;
     }
     return 'icon-' . ltrim($icon, 'icon-');
+}
+
+function km_page_sidebar_icon($page)
+{
+    $href = strtolower(trim((string) ($page->href ?? '')));
+    $byHref = [
+        'dashboard' => 'icon-home',
+        'changepassword' => 'icon-lock',
+        'example-page' => 'icon-list',
+        'countries' => 'icon-globe',
+        'locations' => 'icon-pin',
+        'sectors' => 'icon-layers',
+        'partners' => 'icon-users',
+        'projects' => 'icon-folder-alt',
+        'orphans' => 'icon-user',
+        'orphan-education' => 'icon-graduation',
+        'orphan-support' => 'icon-heart',
+        'sponsors' => 'icon-like',
+        'school-distributions' => 'icon-basket-loaded',
+        'education-items' => 'icon-list',
+        'scholarships' => 'icon-trophy',
+        'water-points' => 'icon-drop',
+        'water-maintenance' => 'icon-wrench',
+        'health-visits' => 'icon-home',
+        'maternal-health' => 'icon-symbol-female',
+        'disease-control' => 'icon-shield',
+        'health-campaigns' => 'icon-speech',
+        'mental-health' => 'icon-emoticon-smile',
+        'eye-care' => 'icon-eye',
+        'infrastructure' => 'icon-drawer',
+        'livelihood-trainings' => 'icon-users',
+        'livelihood-assets' => 'icon-present',
+        'seed-grants' => 'icon-wallet',
+        'relief-distributions' => 'icon-basket',
+        'mediation-cases' => 'icon-equalizer',
+        'dialogue-sessions' => 'icon-bubble',
+        'legal-aid' => 'icon-book-open',
+        'budgets' => 'icon-calculator',
+        'expenses' => 'icon-credit-card',
+        'donor-funding' => 'icon-diamond',
+        'disbursements' => 'icon-share',
+        'staff' => 'icon-badge',
+        'staff-assignments' => 'icon-user-following',
+        'recruitments' => 'icon-briefcase',
+        'policy-acknowledgements' => 'icon-docs',
+        'vendors' => 'icon-handbag',
+        'purchase-requests' => 'icon-note',
+        'purchase-orders' => 'icon-doc',
+        'goods-received' => 'icon-check',
+        'indicators' => 'icon-graph',
+        'monitoring-visits' => 'icon-map',
+        'evaluations' => 'icon-bar-chart',
+        'complaints' => 'icon-bubbles',
+        'research-studies' => 'icon-eyeglasses',
+        'reports' => 'icon-pie-chart',
+    ];
+
+    if ($href !== '' && isset($byHref[$href])) {
+        return $byHref[$href];
+    }
+
+    $stored = trim((string) ($page->fa ?? ''));
+    if ($stored !== '' && strpos($stored, 'icon-') === 0) {
+        return $stored;
+    }
+
+    return km_menu_icon_class($stored !== '' ? $stored : 'icon-arrow-right');
 }
 
 function km_format_money($amount)

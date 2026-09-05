@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     build: .
@@ -10,16 +8,21 @@ services:
       DB_PORT: "3306"
       DB_NAME: zumardb
       DB_USER: zumardbuser
-      DB_PASS: ${ZUMAR_DB_PASS:-change_me}
+      DB_PASS: ${ZUMAR_DB_PASS:-Zf#wI6NxUGW6ROoc4vkGLdZ9e!}
+    volumes:
+      - zumar_uploads:/var/www/html/uploads/zumar
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    restart: unless-stopped
 
   db:
     image: mysql:8.0
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_DATABASE: zumardb
       MYSQL_USER: zumardbuser
-      MYSQL_PASSWORD: ${ZUMAR_DB_PASS:-change_me}
+      MYSQL_PASSWORD: ${ZUMAR_DB_PASS:-Zf#wI6NxUGW6ROoc4vkGLdZ9e!}
       MYSQL_ROOT_PASSWORD: ${ZUMAR_DB_ROOT:-root_change_me}
     ports:
       - "3307:3306"
@@ -27,6 +30,14 @@ services:
       - zumar_mysql_data:/var/lib/mysql
       - ./_core/sql/install.sql:/docker-entrypoint-initdb.d/01-install.sql:ro
       - ./_core/sql/zumar_schema.sql:/docker-entrypoint-initdb.d/02-zumar.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    restart: unless-stopped
 
 volumes:
   zumar_mysql_data:
+  zumar_uploads:

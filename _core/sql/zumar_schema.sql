@@ -1267,6 +1267,53 @@ INSERT INTO pages (fa, pagename, accesspagename, href, topmenuid, sidebar, sort,
 SELECT 'fa-pie-chart', 'Warbixinno', 'Standard reports', 'reports', 18, 1, 10, 0
 WHERE NOT EXISTS (SELECT 1 FROM pages WHERE href = 'reports' AND deleted = 0);
 
+UPDATE pages SET fa = 'icon-globe' WHERE href = 'countries' AND deleted = 0;
+UPDATE pages SET fa = 'icon-pin' WHERE href = 'locations' AND deleted = 0;
+UPDATE pages SET fa = 'icon-layers' WHERE href = 'sectors' AND deleted = 0;
+UPDATE pages SET fa = 'icon-users' WHERE href = 'partners' AND deleted = 0;
+UPDATE pages SET fa = 'icon-folder-alt' WHERE href = 'projects' AND deleted = 0;
+UPDATE pages SET fa = 'icon-user' WHERE href = 'orphans' AND deleted = 0;
+UPDATE pages SET fa = 'icon-graduation' WHERE href = 'orphan-education' AND deleted = 0;
+UPDATE pages SET fa = 'icon-heart' WHERE href = 'orphan-support' AND deleted = 0;
+UPDATE pages SET fa = 'icon-like' WHERE href = 'sponsors' AND deleted = 0;
+UPDATE pages SET fa = 'icon-basket-loaded' WHERE href = 'school-distributions' AND deleted = 0;
+UPDATE pages SET fa = 'icon-list' WHERE href = 'education-items' AND deleted = 0;
+UPDATE pages SET fa = 'icon-trophy' WHERE href = 'scholarships' AND deleted = 0;
+UPDATE pages SET fa = 'icon-drop' WHERE href = 'water-points' AND deleted = 0;
+UPDATE pages SET fa = 'icon-wrench' WHERE href = 'water-maintenance' AND deleted = 0;
+UPDATE pages SET fa = 'icon-home' WHERE href = 'health-visits' AND deleted = 0;
+UPDATE pages SET fa = 'icon-symbol-female' WHERE href = 'maternal-health' AND deleted = 0;
+UPDATE pages SET fa = 'icon-shield' WHERE href = 'disease-control' AND deleted = 0;
+UPDATE pages SET fa = 'icon-speech' WHERE href = 'health-campaigns' AND deleted = 0;
+UPDATE pages SET fa = 'icon-emoticon-smile' WHERE href = 'mental-health' AND deleted = 0;
+UPDATE pages SET fa = 'icon-eye' WHERE href = 'eye-care' AND deleted = 0;
+UPDATE pages SET fa = 'icon-drawer' WHERE href = 'infrastructure' AND deleted = 0;
+UPDATE pages SET fa = 'icon-users' WHERE href = 'livelihood-trainings' AND deleted = 0;
+UPDATE pages SET fa = 'icon-present' WHERE href = 'livelihood-assets' AND deleted = 0;
+UPDATE pages SET fa = 'icon-wallet' WHERE href = 'seed-grants' AND deleted = 0;
+UPDATE pages SET fa = 'icon-basket' WHERE href = 'relief-distributions' AND deleted = 0;
+UPDATE pages SET fa = 'icon-equalizer' WHERE href = 'mediation-cases' AND deleted = 0;
+UPDATE pages SET fa = 'icon-bubble' WHERE href = 'dialogue-sessions' AND deleted = 0;
+UPDATE pages SET fa = 'icon-book-open' WHERE href = 'legal-aid' AND deleted = 0;
+UPDATE pages SET fa = 'icon-calculator' WHERE href = 'budgets' AND deleted = 0;
+UPDATE pages SET fa = 'icon-credit-card' WHERE href = 'expenses' AND deleted = 0;
+UPDATE pages SET fa = 'icon-diamond' WHERE href = 'donor-funding' AND deleted = 0;
+UPDATE pages SET fa = 'icon-share' WHERE href = 'disbursements' AND deleted = 0;
+UPDATE pages SET fa = 'icon-badge' WHERE href = 'staff' AND deleted = 0;
+UPDATE pages SET fa = 'icon-user-following' WHERE href = 'staff-assignments' AND deleted = 0;
+UPDATE pages SET fa = 'icon-briefcase' WHERE href = 'recruitments' AND deleted = 0;
+UPDATE pages SET fa = 'icon-docs' WHERE href = 'policy-acknowledgements' AND deleted = 0;
+UPDATE pages SET fa = 'icon-handbag' WHERE href = 'vendors' AND deleted = 0;
+UPDATE pages SET fa = 'icon-note' WHERE href = 'purchase-requests' AND deleted = 0;
+UPDATE pages SET fa = 'icon-doc' WHERE href = 'purchase-orders' AND deleted = 0;
+UPDATE pages SET fa = 'icon-check' WHERE href = 'goods-received' AND deleted = 0;
+UPDATE pages SET fa = 'icon-graph' WHERE href = 'indicators' AND deleted = 0;
+UPDATE pages SET fa = 'icon-map' WHERE href = 'monitoring-visits' AND deleted = 0;
+UPDATE pages SET fa = 'icon-bar-chart' WHERE href = 'evaluations' AND deleted = 0;
+UPDATE pages SET fa = 'icon-bubbles' WHERE href = 'complaints' AND deleted = 0;
+UPDATE pages SET fa = 'icon-eyeglasses' WHERE href = 'research-studies' AND deleted = 0;
+UPDATE pages SET fa = 'icon-pie-chart' WHERE href = 'reports' AND deleted = 0;
+
 INSERT INTO pagepermissions (roleid, pageid, permissionid, view, edit, del, code, deleted)
 SELECT 2, p.id, 1, 1, 0, 0, CONCAT('2-', p.id), 0
 FROM pages p

@@ -35,6 +35,25 @@ if (!file_exists($configFile)) {
 }
 require_once $configFile;
 
+if (!function_exists('km_env')) {
+    function km_env($key)
+    {
+        $candidates = array(
+            getenv($key),
+            $_ENV[$key] ?? false,
+            $_SERVER[$key] ?? false,
+        );
+
+        foreach ($candidates as $value) {
+            if ($value !== false && $value !== null && $value !== '') {
+                return (string) $value;
+            }
+        }
+
+        return false;
+    }
+}
+
 if (!function_exists('km_apply_db_env_overrides')) {
     function km_apply_db_env_overrides()
     {
@@ -47,8 +66,8 @@ if (!function_exists('km_apply_db_env_overrides')) {
         );
 
         foreach ($map as $envKey => $configKey) {
-            $value = getenv($envKey);
-            if ($value !== false && $value !== '') {
+            $value = km_env($envKey);
+            if ($value !== false) {
                 $GLOBALS['config']['mysql'][$configKey] = $value;
             }
         }

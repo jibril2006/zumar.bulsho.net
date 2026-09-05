@@ -88,9 +88,7 @@ $thisyear = date("Y");
                             ?>
                                     <li class="nav-item <?php if (isactivesite($page->href)) echo 'active'; ?>">
                                         <a href="<?php echo htmlspecialchars($page->href . '.php', ENT_QUOTES, 'UTF-8'); ?>" class="nav-link">
-                                            <?php if (!empty($page->fa)) { ?>
-                                            <i class="<?php echo htmlspecialchars(km_menu_icon_class($page->fa), ENT_QUOTES, 'UTF-8'); ?>" aria-hidden="true"></i>
-                                            <?php } ?>
+                                            <i class="<?php echo htmlspecialchars(km_page_sidebar_icon($page), ENT_QUOTES, 'UTF-8'); ?>" aria-hidden="true"></i>
                                             <span class="menu-title title"><?php
                                                 echo htmlspecialchars(km_page_label($page), ENT_QUOTES, 'UTF-8');
                                                 echo km_render_page_badges($page, $myuserinfo, $thisyear);

@@ -48,14 +48,15 @@ include_once 'sidebar.php';
     .dashboard-pos-theme {
         --dash-page: transparent;
         --dash-card: #ffffff;
-        --dash-border: #e4e6ef;
-        --dash-muted: #7e8299;
-        --dash-text: #181c32;
-        --dash-teal: #319795;
-        --dash-link: #3699ff;
-        max-width: 1320px;
-        margin: 0 auto;
-        padding: 0.25rem 0 1.5rem 10px;
+        --dash-border: #d5e0dc;
+        --dash-muted: #57534e;
+        --dash-text: #1c1917;
+        --dash-teal: #0f766e;
+        --dash-link: #115e59;
+        max-width: 1480px;
+        width: calc(100% - 28px);
+        margin: 0 28px 0 0;
+        padding: 0.25rem 0 1.5rem;
         font-size: 1rem;
     }
     .dashboard-pos-theme .dash-kpi-grid {
@@ -81,9 +82,12 @@ include_once 'sidebar.php';
         border: 1px solid rgba(255, 255, 255, 0.12);
         text-decoration: none;
     }
-    .dashboard-pos-theme .dash-kpi-card--1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-    .dashboard-pos-theme .dash-kpi-card--2 { background: linear-gradient(135deg, #14b8a6, #0f766e); }
-    .dashboard-pos-theme .dash-kpi-card--3 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+    .dashboard-pos-theme .dash-kpi-card--1 { background: #3d5f8a; }
+    .dashboard-pos-theme .dash-kpi-card--2 { background: #536878; }
+    .dashboard-pos-theme .dash-kpi-card--3 { background: #8a7048; }
+    .dashboard-pos-theme .dash-kpi-card--4 { background: #9a534e; }
+    .dashboard-pos-theme .dash-kpi-card--5 { background: #5a5878; }
+    .dashboard-pos-theme .dash-kpi-card--6 { background: #364454; }
     .dashboard-pos-theme .dash-kpi-value { font-size: 1.65rem; font-weight: 700; line-height: 1.1; }
     .dashboard-pos-theme .dash-kpi-label { font-size: 0.9rem; opacity: 0.95; margin-top: 0.35rem; }
     .dashboard-pos-theme .dash-kpi-hint { font-size: 0.78rem; opacity: 0.85; margin-top: 0.35rem; }
@@ -96,9 +100,9 @@ include_once 'sidebar.php';
     }
     .dashboard-pos-theme .dash-panel-card {
         background: #fff;
-        border: 1px solid #e4e6ef;
-        border-radius: 1rem;
-        box-shadow: 0 0 20px rgba(76, 87, 125, 0.08);
+        border: 1px solid #d5e0dc;
+        border-radius: 0.75rem;
+        box-shadow: 0 1px 8px rgba(11, 61, 56, 0.06);
         margin-bottom: 1.25rem;
     }
     .dashboard-pos-theme .dash-panel-body { padding: 1.25rem 1.35rem; }
@@ -106,11 +110,11 @@ include_once 'sidebar.php';
         margin: 0 0 0.75rem;
         font-size: 1.15rem;
         font-weight: 700;
-        color: #181c32;
+        color: #0b3d38;
     }
     .dashboard-pos-theme .dash-panel-body p {
         margin: 0 0 0.65rem;
-        color: #5e6278;
+        color: #57534e;
         line-height: 1.55;
     }
     .dashboard-pos-theme .dash-panel-body code {
@@ -139,7 +143,7 @@ include_once 'sidebar.php';
                     (string) zumar_count('zf_projects'),
                     km_t('kpi_projects'),
                     km_t('kpi_projects_hint'),
-                    'fa fa-folder-open'
+                    'fas fa-folder-open'
                 );
                 $dashStatCard(
                     'orphans.php',
@@ -147,7 +151,7 @@ include_once 'sidebar.php';
                     (string) zumar_count('zf_orphans'),
                     km_t('kpi_orphans'),
                     'ORPH-01',
-                    'fa fa-child'
+                    'fas fa-child'
                 );
                 $dashStatCard(
                     'water-points.php',
@@ -155,31 +159,31 @@ include_once 'sidebar.php';
                     (string) zumar_count('zf_water_points'),
                     km_t('kpi_water'),
                     'WASH-01',
-                    'fa fa-tint'
+                    'fas fa-tint'
                 );
                 $dashStatCard(
                     'staff.php',
-                    'dash-kpi-card--1',
+                    'dash-kpi-card--4',
                     (string) zumar_count('zf_staff'),
                     km_t('kpi_staff'),
                     km_t('kpi_staff_hint'),
-                    'fa fa-users'
+                    'fas fa-users'
                 );
                 $dashStatCard(
                     'purchase-requests.php',
-                    'dash-kpi-card--2',
+                    'dash-kpi-card--5',
                     (string) zumar_count('zf_purchase_requests'),
                     km_t('kpi_pr'),
                     km_t('kpi_pr_hint'),
-                    'fa fa-file-o'
+                    'fas fa-file-alt'
                 );
                 $dashStatCard(
                     'reports.php',
-                    'dash-kpi-card--3',
+                    'dash-kpi-card--6',
                     '→',
                     km_t('kpi_reports'),
                     km_t('kpi_reports_hint'),
-                    'fa fa-pie-chart'
+                    'fas fa-chart-pie'
                 );
                 ?>
             </div>

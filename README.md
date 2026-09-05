@@ -45,3 +45,17 @@ php -S localhost:8000
 ```
 
 App: http://localhost:8000
+
+## Docker
+
+Uses the same database as the PHP config: `zumardb` / `zumardbuser`. On first start MySQL imports `_core/sql/install.sql` and `_core/sql/zumar_schema.sql`.
+
+```bash
+cp .env.example .env
+docker compose up --build
+```
+
+App: http://localhost:8080  
+MySQL on the host: `127.0.0.1:3307`
+
+Login: `admin` / `admin123`
