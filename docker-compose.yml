@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_NAME: zumardb
+      DB_USER: zumardbuser
+      DB_PASS: ${ZUMAR_DB_PASS:-change_me}
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: zumardb
+      MYSQL_USER: zumardbuser
+      MYSQL_PASSWORD: ${ZUMAR_DB_PASS:-change_me}
+      MYSQL_ROOT_PASSWORD: ${ZUMAR_DB_ROOT:-root_change_me}
+    ports:
+      - "3307:3306"
+    volumes:
+      - zumar_mysql_data:/var/lib/mysql
+      - ./_core/sql/install.sql:/docker-entrypoint-initdb.d/01-install.sql:ro
+      - ./_core/sql/zumar_schema.sql:/docker-entrypoint-initdb.d/02-zumar.sql:ro
+
+volumes:
+  zumar_mysql_data:

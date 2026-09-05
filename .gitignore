@@ -1,0 +1,10 @@
+.DS_Store
+.idea/
+.vscode/
+*.log
+.env
+_core/sql_*.php
+!_core/sql_localhost.php
+!_core/sql_zumar.bulsho.net.php
+uploads/zumar/**
+!uploads/zumar/.gitkeep
