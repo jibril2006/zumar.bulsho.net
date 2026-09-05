@@ -12,8 +12,10 @@ services:
       DB_USER: zumardbuser
       DB_PASS: ${ZUMAR_DB_PASS:-Zf#wI6NxUGW6ROoc4vkGLdZ9e!}
     restart: unless-stopped
+    networks:
+      - coolify
 
 networks:
-  default:
+  coolify:
     external: true
     name: coolify
