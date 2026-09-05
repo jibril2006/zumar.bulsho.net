@@ -45,6 +45,10 @@ if ($hasaccess || ($ROLEID == 1)) {
     $sitecontinue = 1;
 } else  $sitecontinue = 0;
 
+if (!$sitecontinue && in_array($this_site, array('profile', 'changepassword'), true)) {
+    $sitecontinue = 1;
+}
+
 if (!$sitecontinue) Redirect::to('dashboard.php');
 
 $pageTitle = isset($pagename) ? $pagename . ' - ' . km_company_name() : km_company_name();

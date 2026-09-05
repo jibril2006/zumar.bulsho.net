@@ -344,7 +344,7 @@ function km_user_menu_label($key)
 
 function km_user_settings_url()
 {
-    return 'dashboard.php';
+    return 'changepassword.php';
 }
 
 function km_site_url()
